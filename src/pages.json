@@ -25,15 +25,21 @@
     "list": [
       {
         "iconPath": "static/tabbar/home.png",
-        "selectedIconPath": "static/tabbar/homeHL.png",
+        "selectedIconPath": "static/tabbar/home-h.png",
         "pagePath": "pages/index/index",
         "text": "首页"
       },
       {
-        "iconPath": "static/tabbar/example.png",
-        "selectedIconPath": "static/tabbar/exampleHL.png",
-        "pagePath": "pages/about/about",
-        "text": "关于"
+        "iconPath": "static/tabbar/classify.png",
+        "selectedIconPath": "static/tabbar/classify-h.png",
+        "pagePath": "pages/classify/classify",
+        "text": "分类"
+      },
+      {
+        "iconPath": "static/tabbar/user.png",
+        "selectedIconPath": "static/tabbar/user-h.png",
+        "pagePath": "pages/me/me",
+        "text": "我的"
       }
     ]
   },
@@ -42,14 +48,37 @@
       "path": "pages/index/index",
       "type": "home",
       "style": {
+        "navigationStyle": "custom",
         "navigationBarTitleText": "首页"
       }
     },
     {
-      "path": "pages/about/about",
+      "path": "pages/classify/classify-list",
       "type": "page",
       "style": {
-        "navigationBarTitleText": "关于"
+        "navigationBarTitleText": "分类列表"
+      }
+    },
+    {
+      "path": "pages/classify/classify",
+      "type": "page",
+      "style": {
+        "navigationBarTitleText": "分类"
+      }
+    },
+    {
+      "path": "pages/me/me",
+      "type": "page",
+      "style": {
+        "navigationBarTitleText": "我的"
+      }
+    },
+    {
+      "path": "pages/preview/preview",
+      "type": "page",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "分类列表"
       }
     }
   ],

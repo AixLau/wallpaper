@@ -1,65 +1,68 @@
 <!-- 使用 type="home" 属性设置首页，其他页面不需要设置，默认为page；推荐使用json5，更强大，且允许注释 -->
 <route lang="json5" type="home">
 {
-  style: {
-    navigationBarTitleText: '首页',
-  },
+style: {
+navigationStyle: 'custom',
+navigationBarTitleText: '首页',
+},
 }
 </route>
 <template>
-  <view class="homeLayout">
-    <view class="banner">
-      <wd-swiper
-        :list="swiperList"
-        autoplay
-        v-model:current="current"
-        :indicator="{ type: 'dots-bar' }"
-        @click="handleClick"
-        @change="onChange"
-      ></wd-swiper>
-    </view>
+  <view class="homeLayout pageBackgroundCol ">
+    <view>
+      <view class="banner">
+        <wd-swiper
+            :list="swiperList"
+            autoplay
+            v-model:current="current"
+            :indicator="{ type: 'dots-bar' }"
+            @click="handleClick"
+            @change="onChange"
+        ></wd-swiper>
+      </view>
 
-    <view class="notice">
-      <view class="left">
-        <wd-icon class="icon" name="tips" size="22px" color="#0083ff"></wd-icon>
-        <text class="text">公告</text>
+      <view class="notice">
+        <view class="left">
+          <wd-icon class="icon" name="tips" size="22px" color="#0083ff"></wd-icon>
+          <text class="text">公告</text>
+        </view>
+        <view class="center">
+          <swiper vertical autoplay interval="1500" duration="500" circular>
+            <swiper-item v-for="item in 3">公告 {{ item }}</swiper-item>
+          </swiper>
+        </view>
+        <view class="right">
+          <wd-icon name="arrow-right" size="22px" color="#0083ff"></wd-icon>
+        </view>
       </view>
-      <view class="center">
-        <swiper vertical autoplay interval="1500" duration="500" circular>
-          <swiper-item v-for="item in 3">公告 {{ item }}</swiper-item>
-        </swiper>
-      </view>
-      <view class="right">
-        <wd-icon name="arrow-right" size="22px" color="#0083ff"></wd-icon>
-      </view>
-    </view>
 
-    <view class="select">
-      <common-title>
-        <template #left>每日推荐</template>
-        <template #right>
-          <wd-icon name="calendar" size="22px" class="mr-[10rpx]" />
-          {{ new Date().getDate() }}日
-        </template>
-      </common-title>
-      <view class="content">
-        <scroll-view scroll-x>
-          <view class="box" v-for="item in swiperList">
-            <image :src="item" mode="aspectFill"></image>
-          </view>
-        </scroll-view>
+      <view class="select">
+        <common-title>
+          <template #left>每日推荐</template>
+          <template #right>
+            <wd-icon name="calendar" size="22px" class="mr-[10rpx]"/>
+            {{ new Date().getDate() }}日
+          </template>
+        </common-title>
+        <view class="content">
+          <scroll-view scroll-x>
+            <view class="box" v-for="item in swiperList">
+              <image :src="item" mode="aspectFill"></image>
+            </view>
+          </scroll-view>
+        </view>
       </view>
-    </view>
 
-    <view class="theme m-y-[50rpx]">
-      <common-title>
-        <template #left>精选专题</template>
-        <template #right>
-          <navigator>更多</navigator>
-        </template>
-      </common-title>
-      <view class="mt-[30rpx] px-[30rpx]">
-        <theme-item :items="themeItemList" />
+      <view class="theme m-y-[50rpx]">
+        <common-title>
+          <template #left>精选专题</template>
+          <template #right>
+            <navigator>更多</navigator>
+          </template>
+        </common-title>
+        <view class="mt-[30rpx] px-[30rpx]">
+          <theme-item :items="themeItemList"/>
+        </view>
       </view>
     </view>
   </view>
@@ -68,8 +71,9 @@
 <script lang="ts" setup>
 import CommonTitle from '@/components/common-title.vue'
 import ThemeItem from '@/components/theme-item.vue'
-import { ThemeItemProps } from '@/types/theme-item'
+import {ThemeItemProps} from '@/types/theme-item'
 // 获取屏幕边界到安全区域距离
+const { safeAreaInsets } = uni.getSystemInfoSync()
 defineOptions({
   name: 'Home',
 })
